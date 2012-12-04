@@ -25,9 +25,9 @@ function AdjustingCtrl($scope, $routeParams, $http, $location) {
 		var southWest=map.getBounds().getSouthWest();
 		var northEast=map.getBounds().getNorthEast();
 		//Ajout des markers existants
-	    $http.get('rest/poi/within/'+southWest.lat+'/'+southWest.lng+'/'+northEast.lat+'/'+northEast.lng)
+		console.log('rest/poi/within/'+southWest.lat+'/'+southWest.lng+'/'+northEast.lat+'/'+northEast.lng);
+	    $http.post('rest/poi/within/',{'south':southWest.lat, 'west':southWest.lng, 'north':northEast.lat, 'east':northEast.lng})
 	    .success(function(data, status, headers, config) {
-	    	console.log(map);
 	    	markers.clearLayers();
 	    	jQuery.each(data,function(i,caption){
 	    		L.marker([caption.loc.lat,caption.loc.lng]).addTo(markers);
