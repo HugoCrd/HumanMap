@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app="humanMap">
+<head>
+	<meta charset="utf-8">
+	<title>Human Map</title>
+	
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap-responsive.min.css"/>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
+	<!--[if lte IE 8]>
+		link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
+	<![endif]-->
+	<link rel="stylesheet" href="resources/css/app.css" />
+	
+	<script src="resources/lib/jquery.min.js"></script>
+	<script src="resources/lib/bootstrap.min.js"></script>
+	<script src="resources/lib/angular.min.js"></script>
+	<script src="resources/js/app.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid" id="mainNavBar">
+				<a class="brand" href="#" id="mainNavBrand">HumanMap</a>
+				<ul id="navItemUl" class="nav">
+					<li><a href="#/adjusting">Adjusting results</a></li>
+					<li><a href="#/rectNcircles">User defined results</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div ng-view></div>
+	<div class="row-fluid"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+</body>
+</html>
