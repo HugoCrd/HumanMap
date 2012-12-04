@@ -27,9 +27,9 @@ public class MapController {
 	@Autowired
 	private PoiDao poiDao;
 	
-	@RequestMapping(value = "poi/between/{south}/{west}/{north}/{east}", method = RequestMethod.GET)
+	@RequestMapping(value = "poi/within/{south}/{west}/{north}/{east}", method = RequestMethod.GET)
 	public @ResponseBody List<Poi> home(@PathVariable BigDecimal south, @PathVariable BigDecimal west, @PathVariable BigDecimal north, @PathVariable BigDecimal east) {
-		logger.info("Sending POIs between "+south+":"+west+" and "+north+":"+east);
+		logger.info("Sending POIs within "+south+":"+west+" and "+north+":"+east);
 		List<Poi> pois = new ArrayList<Poi>();
 		pois.add(new Poi("Descr", BigDecimal.valueOf(48.853622), BigDecimal.valueOf(2.36381)));
 		return pois;

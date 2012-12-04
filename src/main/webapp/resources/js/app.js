@@ -25,7 +25,7 @@ function AdjustingCtrl($scope, $routeParams, $http, $location) {
 		var southWest=map.getBounds().getSouthWest();
 		var northEast=map.getBounds().getNorthEast();
 		//Ajout des markers existants
-	    $http.get('rest/poi/between/'+southWest.lat+'/'+southWest.lng+'/'+northEast.lat+'/'+northEast.lng)
+	    $http.get('rest/poi/within/'+southWest.lat+'/'+southWest.lng+'/'+northEast.lat+'/'+northEast.lng)
 	    .success(function(data, status, headers, config) {
 	    	console.log(map);
 	    	markers.clearLayers();

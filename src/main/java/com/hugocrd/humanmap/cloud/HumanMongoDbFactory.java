@@ -29,11 +29,11 @@ public class HumanMongoDbFactory {
 			if (!environment.isCloudFoundry()) {
 				logger.info("Configuration de la base de donnée : Contexte local");
 				
-				mongoFactoryInfo = new SimpleMongoDbFactory(new MongoURI("mongodb://127.0.0.1:27017/yidsInfo"));
+				mongoFactoryInfo = new SimpleMongoDbFactory(new MongoURI("mongodb://127.0.0.1:27017/HumanMapInfo"));
 			} else {
 				logger.info("Configuration de la base de donnée : Contexte cloud");
 				
-				MongoServiceInfo serviceInfo = getServiceInfo(getServiceDataByName(environment, "yidsInfo"), MongoServiceInfo.class);
+				MongoServiceInfo serviceInfo = getServiceInfo(getServiceDataByName(environment, "HumanMapInfo"), MongoServiceInfo.class);
 				mongoFactoryInfo = new MongoServiceCreator().createService(serviceInfo);
 			}
 		} catch (UnknownHostException e) {
