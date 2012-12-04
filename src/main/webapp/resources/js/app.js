@@ -30,7 +30,7 @@ function AdjustingCtrl($scope, $routeParams, $http, $location) {
 	    .success(function(data, status, headers, config) {
 	    	markers.clearLayers();
 	    	jQuery.each(data,function(i,caption){
-	    		L.marker([caption.loc.lat,caption.loc.lng]).addTo(markers);
+	    		L.marker([caption.loc.lat,caption.loc.lng]).bindPopup(caption.description).addTo(markers);
 	    	});
 	    })
 		.error(function(data, status, headers, config){

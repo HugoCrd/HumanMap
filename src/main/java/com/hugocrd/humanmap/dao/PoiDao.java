@@ -21,10 +21,6 @@ public class PoiDao {
 		pois.ensureIndex("{loc: '2d'}");
 	}
 	
-	public Iterable<Poi> get(){
-		return pois.find("{}").as(Poi.class);
-	}
-	
 	public Iterable<Poi> getWithin(Box box){
 		/*
 		 * From Mongo doc :
