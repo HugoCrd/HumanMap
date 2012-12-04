@@ -12,6 +12,10 @@
 		<org.springframework-version>3.1.2.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.9</org.aspectj-version>
 		<version.jackson>2.0.2</version.jackson>
+		<version.jongo>0.2</version.jongo>
+		<version.mongo>2.9.1</version.mongo>
+		<version.spring-data-mongo>1.0.3.RELEASE</version.spring-data-mongo>
+		<version.cloudfoundry>0.8.2</version.cloudfoundry>
 		<org.slf4j-version>1.5.10</org.slf4j-version>
 	</properties>
 	<dependencies>
@@ -48,6 +52,27 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>${version.jackson}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${version.mongo}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jongo</groupId>
+			<artifactId>jongo</artifactId>
+			<version>${version.jongo}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>${version.spring-data-mongo}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cloudfoundry</groupId>
+			<artifactId>cloudfoundry-runtime</artifactId>
+			<version>${version.cloudfoundry}</version>
 		</dependency>
 		
 		<!-- AspectJ -->
