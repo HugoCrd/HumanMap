@@ -18,6 +18,33 @@
 		<version.cloudfoundry>0.8.2</version.cloudfoundry>
 		<org.slf4j-version>1.5.10</org.slf4j-version>
 	</properties>
+	
+	<!-- ================================================================================ -->
+	<!-- External additional maven repositories -->
+	<!-- ================================================================================ -->
+	<repositories>
+		<repository>
+			<id>jboss-public-repository</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Framework Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+	</repositories>
+	
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
