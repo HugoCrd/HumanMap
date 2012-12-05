@@ -13,7 +13,7 @@ h1 {
 	border-top: 3px solid #44aac8;
 }
 
-#adjustingMap { 
+#adjustingMap, #polyMap { 
 	height: 500px;
 }
 

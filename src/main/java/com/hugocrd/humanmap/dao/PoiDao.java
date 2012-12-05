@@ -7,12 +7,14 @@ import org.springframework.stereotype.Repository;
 
 import com.hugocrd.humanmap.cloud.HumanMongoDbFactory;
 import com.hugocrd.humanmap.model.Box;
+import com.hugocrd.humanmap.model.Circle;
 import com.hugocrd.humanmap.model.Poi;
 
 @Repository
 public class PoiDao {
 
 	private MongoCollection pois;
+	private static final int LIMIT = 200;
 	
 	@Autowired
 	public PoiDao(HumanMongoDbFactory mongoDbFactory){
@@ -28,7 +30,18 @@ public class PoiDao {
 		 *	> db.places.find({"loc" : {"$within" : {"$box" : box}}})
 		 * */
 		String query = "{loc: {$within : {$box : "+box+"}}}";
-		return pois.find(query).limit(100).as(Poi.class);
+		return pois.find(query).limit(LIMIT).as(Poi.class);
+	}
+	
+	public Iterable<Poi> getWithin(Circle circle){
+		/*
+		 * From Mongo doc :
+		 * 	> center = [50, 50]
+		 *	> radius = 10
+		 *	> db.places.find({"loc" : {"$within" : {"$center" : [center, radius]}}})
+		 * */
+		String query = "{loc: {$within : {$center : "+circle+"}}}";
+		return pois.find(query).limit(LIMIT).as(Poi.class);
 	}
 	
 }
