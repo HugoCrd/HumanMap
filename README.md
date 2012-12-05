@@ -21,6 +21,8 @@ Just use the following command line to populate Mongo :
 
 > mongoimport --db HumanMapInfo --collection pois --file tournagesdefilmsparis2011_final.json --journal --jsonArray
 
+You can also use the dump I made (/populate/dump). Use *mongorestore* tool to populate your database.
+
 ---
 
 For now, it took me three Guinesses to build it.
