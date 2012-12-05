@@ -1,0 +1,7 @@
+#!/bin/bash
+mvn install
+rm -r ../cloudfoundry-apache-tomcat/webapps/ROOT/
+unzip target/humanmap-1.0.0-BUILD-SNAPSHOT.war -d ../cloudfoundry-apache-tomcat/webapps/ROOT/
+cd ../cloudfoundry-apache-tomcat/
+vmc update HumanMap
+
