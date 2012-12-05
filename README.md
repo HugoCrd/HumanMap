@@ -3,6 +3,11 @@ Human Map
 
 That app shows some use cases for MongoDb Geospatial Indexing. 
 I made it as demo for my talk at #HumanTalks.
+Note that I'm currently developing it. I'll add some more stuff in the next week.
+
+CloudFoundry
+---
+I deployed it on Cloudfoundry: http://humanmap.cloudfoundry.com/
 
 
 How to populate Mongo ?
@@ -18,5 +23,5 @@ Just use the following command line to populate Mongo :
 
 ---
 
-For now, it took me 4 Guinesses to build it.
+For now, it took me three Guinesses to build it.
 
