@@ -31,7 +31,7 @@ function AdjustingCtrl($scope, $routeParams, $http, $location) {
 	    $http.post('rest/poi/within/box',{'south':southWest.lat, 'west':southWest.lng, 'north':northEast.lat, 'east':northEast.lng})
 	    .success(function(data, status, headers, config) {
 	    	markers.clearLayers();
-	    	jQuery.each(data,function(i,caption){
+	    	angular.forEach(data, function(caption){
 	    		L.marker([caption.loc.lat,caption.loc.lng]).bindPopup(caption.description).addTo(markers);
 	    	});
 	    })
@@ -95,7 +95,7 @@ function RectNcirclesCtrl($scope, $routeParams, $http, $location) {
 	    $http.post('rest/poi/within/circle',{'lat':latlng.lat, 'lng':latlng.lng, 'radius':radius})
 	    .success(function(data, status, headers, config) {
 	    	markers.clearLayers();
-	    	jQuery.each(data,function(i,caption){
+	    	angular.forEach(data, function(caption){
 	    		L.marker([caption.loc.lat,caption.loc.lng]).bindPopup(caption.description).addTo(markers);
 	    	});
 	    })
