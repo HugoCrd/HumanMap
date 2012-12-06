@@ -26,4 +26,8 @@ public class Loc {
 	public void setLng(BigDecimal lng) {
 		this.lng = lng;
 	}
+	
+	public String toString(){
+		return "["+lat+","+lng+"]";
+	}
 }

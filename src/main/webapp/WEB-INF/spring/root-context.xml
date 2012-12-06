@@ -6,4 +6,4 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="mongoDbFactory" class="com.hugocrd.humanmap.cloud.HumanMongoDbFactory"/>	
 		
-</beans>
+</beans> 

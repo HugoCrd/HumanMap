@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.hugocrd.humanmap.cloud.HumanMongoDbFactory;
 import com.hugocrd.humanmap.model.Box;
 import com.hugocrd.humanmap.model.Circle;
+import com.hugocrd.humanmap.model.Loc;
 import com.hugocrd.humanmap.model.Poi;
 
 @Repository
@@ -37,9 +38,27 @@ public class PoiDao {
 		 * From Mongo doc :
 		 * 	> center = [50, 50]
 		 *	> radius = 10
-		 *	> db.places.find({"loc" : {"$within" : {"$center" : [center, radius]}}})
+		 *	> db.places.find({"loc" : {"$within" : {"$centerSphere" : [center, radius]}}})
 		 * */
-		String query = "{loc: {$within : {$center : "+circle+"}}}";
+		String query = "{loc: {$within : {$centerSphere : "+circle+"}}}";
+		return pois.find(query).limit(limit).as(Poi.class);
+	}
+	
+	public Iterable<Poi> getWithin(Loc[] locs, int limit){
+		/*
+		 * From Mongo doc :
+		 * 	> polygonA = [ [ 10, 20 ], [ 10, 40 ], [ 30, 40 ], [ 30, 20 ] ]
+		 *	> polygonB = { a : { x : 10, y : 20 }, b : { x : 15, y : 25 }, c : { x : 20, y : 20 } }
+		 *	> db.places.find({ "loc" : { "$within" : { "$polygon" : polygonA } } })
+		 *	> db.places.find({ "loc" : { "$within" : { "$polygon" : polygonB } } })
+		 * */
+		StringBuilder polygon= new StringBuilder("[");
+		for(int i=0 ; i<locs.length ; i++) {
+			if(i!=0) polygon.append(",");
+			polygon.append(locs[i]);
+		}
+		polygon.append("]");
+		String query = "{loc: {$within : {$polygon : "+polygon.toString()+"}}}";
 		return pois.find(query).limit(limit).as(Poi.class);
 	}
 	

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hugocrd.humanmap.dao.PoiDao;
 import com.hugocrd.humanmap.model.Box;
 import com.hugocrd.humanmap.model.Circle;
+import com.hugocrd.humanmap.model.Loc;
 import com.hugocrd.humanmap.model.Poi;
 
 /**
@@ -28,14 +29,20 @@ public class MapController {
 	
 	@RequestMapping(value = "poi/within/box/{limit}", method = RequestMethod.POST)
 	public @ResponseBody Iterable<Poi> withinBox(@RequestBody Box box, @PathVariable int limit) {
-		logger.info("Sending POIs within "+box.getSouth()+":"+box.getWest()+" and "+box.getNorth()+":"+box.getEast());
+		logger.info("Sending POIs within box "+box.getSouth()+":"+box.getWest()+" and "+box.getNorth()+":"+box.getEast());
 		return poiDao.getWithin(box, limit);
 	}
 	
 	@RequestMapping(value = "poi/within/circle/{limit}", method = RequestMethod.POST)
 	public @ResponseBody Iterable<Poi> withinCircle(@RequestBody Circle circle, @PathVariable int limit) {
-		logger.info("Sending POIs around "+circle.getLat()+":"+circle.getLng()+" with a "+circle.getRadius()+" radius");
+		logger.info("Sending POIs within circle "+circle.getLat()+":"+circle.getLng()+" with a "+circle.getRadius()+"radians radius");
 		return poiDao.getWithin(circle, limit);
+	}
+	
+	@RequestMapping(value = "poi/within/polygon/{limit}", method = RequestMethod.POST)
+	public @ResponseBody Iterable<Poi> withinPolygon(@RequestBody Loc[] locs, @PathVariable int limit) {
+		logger.info("Sending POIs within polygon");
+		return poiDao.getWithin(locs, limit);
 	}
 
 	public void setPoiDao(PoiDao poiDao) {
