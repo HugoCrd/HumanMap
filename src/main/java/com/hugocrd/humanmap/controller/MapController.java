@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,16 +26,16 @@ public class MapController {
 	@Autowired
 	private PoiDao poiDao;
 	
-	@RequestMapping(value = "poi/within/box", method = RequestMethod.POST)
-	public @ResponseBody Iterable<Poi> withinBox(@RequestBody Box box) {
+	@RequestMapping(value = "poi/within/box/{limit}", method = RequestMethod.POST)
+	public @ResponseBody Iterable<Poi> withinBox(@RequestBody Box box, @PathVariable int limit) {
 		logger.info("Sending POIs within "+box.getSouth()+":"+box.getWest()+" and "+box.getNorth()+":"+box.getEast());
-		return poiDao.getWithin(box);
+		return poiDao.getWithin(box, limit);
 	}
 	
-	@RequestMapping(value = "poi/within/circle", method = RequestMethod.POST)
-	public @ResponseBody Iterable<Poi> withinCircle(@RequestBody Circle circle) {
+	@RequestMapping(value = "poi/within/circle/{limit}", method = RequestMethod.POST)
+	public @ResponseBody Iterable<Poi> withinCircle(@RequestBody Circle circle, @PathVariable int limit) {
 		logger.info("Sending POIs around "+circle.getLat()+":"+circle.getLng()+" with a "+circle.getRadius()+" radius");
-		return poiDao.getWithin(circle);
+		return poiDao.getWithin(circle, limit);
 	}
 
 	public void setPoiDao(PoiDao poiDao) {

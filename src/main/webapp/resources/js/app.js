@@ -13,6 +13,7 @@ angular.module('humanMap', []).
 
 function AdjustingCtrl($scope, $routeParams, $http, $location) {
 
+	$scope.limit=200;
 	var map = L.map('adjustingMap').setView([48.85387, 2.34283], 12);	
 	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -28,7 +29,7 @@ function AdjustingCtrl($scope, $routeParams, $http, $location) {
 		var southWest=bounds.getSouthWest();
 		var northEast=bounds.getNorthEast();
 		//Ajout des markers existants
-	    $http.post('rest/poi/within/box',{'south':southWest.lat, 'west':southWest.lng, 'north':northEast.lat, 'east':northEast.lng})
+	    $http.post('rest/poi/within/box/'+$scope.limit,{'south':southWest.lat, 'west':southWest.lng, 'north':northEast.lat, 'east':northEast.lng})
 	    .success(function(data, status, headers, config) {
 	    	markers.clearLayers();
 	    	angular.forEach(data, function(caption){
@@ -43,6 +44,7 @@ function AdjustingCtrl($scope, $routeParams, $http, $location) {
 
 function RectNcirclesCtrl($scope, $routeParams, $http, $location) {
 	
+	$scope.limit=200;
 	var map = L.map('polyMap').setView([48.85387, 2.34283], 12);	
 	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -85,14 +87,14 @@ function RectNcirclesCtrl($scope, $routeParams, $http, $location) {
 		loadWithinCircle(e.circ.getLatLng(), e.circ.getRadius(), markers);
 	});
 	map.on('draw:marker-created', function (e) {
-	e.marker.bindPopup('A popup!');
+		e.marker.bindPopup('A popup!');
 		drawnItems.addLayer(e.marker);
 	});
 	map.addLayer(drawnItems);
 	
 	function loadWithinCircle(latlng, radius, markers) {
 		//Ajout des markers existants
-	    $http.post('rest/poi/within/circle',{'lat':latlng.lat, 'lng':latlng.lng, 'radius':radius})
+	    $http.post('rest/poi/within/circle/'+$scope.limit,{'lat':latlng.lat, 'lng':latlng.lng, 'radius':radius})
 	    .success(function(data, status, headers, config) {
 	    	markers.clearLayers();
 	    	angular.forEach(data, function(caption){

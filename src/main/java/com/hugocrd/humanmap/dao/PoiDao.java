@@ -14,7 +14,6 @@ import com.hugocrd.humanmap.model.Poi;
 public class PoiDao {
 
 	private MongoCollection pois;
-	private static final int LIMIT = 200;
 	
 	@Autowired
 	public PoiDao(HumanMongoDbFactory mongoDbFactory){
@@ -23,17 +22,17 @@ public class PoiDao {
 		pois.ensureIndex("{loc: '2d'}");
 	}
 	
-	public Iterable<Poi> getWithin(Box box){
+	public Iterable<Poi> getWithin(Box box, int limit){
 		/*
 		 * From Mongo doc :
 		 * 	> box = [[40.73083, -73.99756], [40.741404,  -73.988135]]
 		 *	> db.places.find({"loc" : {"$within" : {"$box" : box}}})
 		 * */
 		String query = "{loc: {$within : {$box : "+box+"}}}";
-		return pois.find(query).limit(LIMIT).as(Poi.class);
+		return pois.find(query).limit(limit).as(Poi.class);
 	}
 	
-	public Iterable<Poi> getWithin(Circle circle){
+	public Iterable<Poi> getWithin(Circle circle, int limit){
 		/*
 		 * From Mongo doc :
 		 * 	> center = [50, 50]
@@ -41,7 +40,7 @@ public class PoiDao {
 		 *	> db.places.find({"loc" : {"$within" : {"$center" : [center, radius]}}})
 		 * */
 		String query = "{loc: {$within : {$center : "+circle+"}}}";
-		return pois.find(query).limit(LIMIT).as(Poi.class);
+		return pois.find(query).limit(limit).as(Poi.class);
 	}
 	
 }
