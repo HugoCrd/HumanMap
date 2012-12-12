@@ -17,11 +17,7 @@
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+	
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -29,11 +25,8 @@
 	</head>
 
 	<body>
-
 		<div class="reveal">
 			<div class="slides">
-				<section>
-				</section>
 
 			    <section>
 			        <h1>Recherche<br>Géospatiale</h1><br>
@@ -77,7 +70,7 @@
 
 				<section>
 				    <h1>Solr</h1>
-				    <h1>Hibernate Spatial Search</h1>
+				    <h1>Hibernate Search</h1>
 				    <h2><font color="#44AAEE">Indexent des données existantes</font></h2>
 				</section>
 
@@ -146,11 +139,11 @@ db.collection.find({loc : {$within : {$polygon : [[10, 20], [10, 40], [30, 40], 
 
 				<section>
 					 <h2>La terre est <font color="#44AAEE">ronde</font></h2>
+					 <pre><code class="javascript">
+db.collection.find( {loc: {$nearSphere : [0,0]}})
+					</code></pre>
 				    <pre><code class="javascript">
 db.collection.find( {loc: {$within : {$centerSphere : {[0,0], 10}}}})
-					</code></pre>
-					<pre><code class="javascript">
-db.collection.find( {loc: {$nearSphere : [0,0]}})
 					</code></pre>
 					Les distances sont alors en radians
 				</section>
@@ -166,18 +159,15 @@ db.collection.find( {loc: {$nearSphere : [0,0]}})
 
 				<section>
 					 <h1><font color="#44AAEE">Cas d'utilisation</font></h1>
-					 <h2><a href="http://humanmap.cloudfoundry.com/#/rectNcircles" target="_blank">Human Map</a></h2>
+					 <h2><a href="http://humanmap.cloudfoundry.com/#/rectNcircles">Human Map</a></h2>
 				</section>
 
 				<section>
 					 <a href="https://twitter.com/HugoCrd" target="_blank">@HugoCrd</a><br>
-					 <a href="http://humanmap.cloudfoundry.com/#/rectNcircles" target="_blank">Human Map</a><br>
-					 <a href="https://github.com/HugoCrd/HumanMap" target="_blank">Human Map on GitHub</a>
+					 <a href="http://humanmap.cloudfoundry.com/#/rectNcircles" target="_blank">http://humanmap.cloudfoundry.com</a><br>
+					 <a href="https://github.com/HugoCrd/HumanMap" target="_blank">https://github.com/HugoCrd/HumanMap</a>
 				</section>
-
-				<section>
-				</section>
-
+				
 			</div>
 		</div>
 
